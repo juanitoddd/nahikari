@@ -9,15 +9,14 @@ import { useFrame } from '@react-three/fiber';
 function Model(props: any) {
   const flowerRef = useRef<any>();
   const { nodes, materials } = useGLTF('/flower.glb')
-
+  const geometry: any = nodes.Flower_Sunflower_Medium;
   useFrame(() => {
     if(flowerRef.current) flowerRef.current.rotation.y += 0.01;
   });
-
-  console.log("🚀 ~ Model ~ nodes:", nodes)
+  
   return (
     <group {...props} dispose={null}>
-      <mesh ref={flowerRef} geometry={nodes.Flower_Sunflower_Medium.geometry} material={materials.M_Flower_Sunflower} position={[0,-2.5,0]} scale={0.004} />
+      <mesh ref={flowerRef} geometry={geometry.geometry} material={materials.M_Flower_Sunflower} position={[0,-2.5,0]} scale={0.004} />
     </group>
   )
 }
